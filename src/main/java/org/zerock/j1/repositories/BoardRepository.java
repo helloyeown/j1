@@ -35,5 +35,7 @@ public interface BoardRepository extends JpaRepository<Board, Long>, BoardSearch
 	@Query(value = "select * from t_board", nativeQuery = true)
 	List<Object[]> listNative();
 
+	@Query("select b.bno, b.title, b.writer, count(r) from Board b left outer join Reply r on r.board = b group by b order by b.bno desc")
+	List<Object[]> getListWithRCnt();
 
 }

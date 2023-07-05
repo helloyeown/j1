@@ -27,6 +27,26 @@ public class BoardRepositoryTests {
 
 
 	@Test
+	public void testListWithRCntSearch(){
+
+		Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+
+		boardRepository.searchWithRCnt("tcw", "1", pageable);
+
+	}
+
+
+	@Test
+	public void testListWithRCnt(){
+		List<Object[]> result = boardRepository.getListWithRCnt();
+
+		for (Object[] result2 : result) {
+			log.info(Arrays.toString(result2));
+		}
+	}
+
+
+	@Test
 	public void testSearch1(){
 		Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
 		Page<Board> result = boardRepository.search1(null, "1", pageable);
