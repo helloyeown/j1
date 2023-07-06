@@ -37,7 +37,7 @@ public class ReplyRepositoryTests {
 
 	@Test
 	public void testInsertDummies(){
-		Long[] bnoArr = {99L, 96L, 92L, 84L, 81L};
+		Long[] bnoArr = {300L, 298L, 295L, 84L, 81L};
 
 		for (Long bno : bnoArr) {
 			

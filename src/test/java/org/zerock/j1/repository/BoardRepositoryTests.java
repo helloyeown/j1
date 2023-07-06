@@ -11,8 +11,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.jaxb.SpringDataJaxb.PageRequestDto;
 import org.springframework.test.annotation.Commit;
 import org.zerock.j1.domain.Board;
+import org.zerock.j1.dto.BoardListRCntDTO;
+import org.zerock.j1.dto.PageRequestDTO;
+import org.zerock.j1.dto.PageResponseDTO;
 import org.zerock.j1.repositories.BoardRepository;
 
 import jakarta.transaction.Transactional;
@@ -184,6 +188,17 @@ public class BoardRepositoryTests {
 		Page<Object[]> result = boardRepository.listTitle2("1", pageable);
 
 		log.info(result);
+
+	}
+
+
+	@Test
+	public void test0706_1(){
+
+		PageRequestDTO pageRequestDTO = new PageRequestDTO();
+
+		PageResponseDTO<BoardListRCntDTO> responseDTO = boardRepository.searchDTORcnt(pageRequestDTO);
+		log.info(responseDTO);
 
 	}
 
