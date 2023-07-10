@@ -9,10 +9,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.zerock.j1.domain.Board;
+import org.zerock.j1.dto.BoardReadDTO;
 import org.zerock.j1.repositories.search.BoardSearch;
 
 public interface BoardRepository extends JpaRepository<Board, Long>, BoardSearch {
 	
+	@Query("select b from Board b where b.bno = :bno")
+	BoardReadDTO readOne(@Param("bno") Long bno);
+
 	List<Board> findByTitleContaining(String title);
 
 	// JPQL

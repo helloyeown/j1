@@ -1,10 +1,13 @@
 package org.zerock.j1.controller;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.zerock.j1.dto.BoardDTO;
 import org.zerock.j1.dto.BoardListRCntDTO;
 import org.zerock.j1.dto.PageRequestDTO;
 import org.zerock.j1.dto.PageResponseDTO;
@@ -24,12 +27,18 @@ public class BoardController {
 
 
 	@GetMapping(value = "/list")
-	public PageResponseDTO<BoardListRCntDTO> list(PageRequestDTO requestDTO){
+	public PageResponseDTO<BoardListRCntDTO> list(@ParameterObject PageRequestDTO requestDTO){
 
 		log.info(requestDTO);
 
 		return boardService.listRCnt(requestDTO);
 
+	}
+
+
+	@GetMapping("/{bno}")
+	public BoardDTO get(@PathVariable Long bno){
+		return boardService.getOne(bno);
 	}
 
 }

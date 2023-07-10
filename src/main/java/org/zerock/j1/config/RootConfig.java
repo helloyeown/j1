@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RootConfig {
 
-	 @Bean
+	@Bean
     public ModelMapper getMapper() {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration()
                 .setFieldMatchingEnabled(true)
                 .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
-                .setMatchingStrategy(MatchingStrategies.LOOSE);
+                .setMatchingStrategy(MatchingStrategies.LOOSE); // reply 엔티티에서 Board를 자동 매칭해 줌
 
         return modelMapper;
     }
